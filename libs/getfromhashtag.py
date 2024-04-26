@@ -35,11 +35,11 @@ def getFromHashtag(conf, cursor=None):
 				image_versions = x.image_versions2
 				# Access the 'candidates' list
 				candidates = image_versions['candidates']
-				print("got candidates")
+				# print("got candidates")
 				# Get the first thumbnail URL (index 0)
 				thumb_url = candidates[0]['url']
 			print('thumbbbbbbbbbbbbb', thumb_url, '\n')
-			print(x,'\n')
+			# print(x,'\n')
 			downloadThumb(conf, x.id, str(thumb_url))
 
 			
@@ -85,12 +85,12 @@ def getFromHashtag(conf, cursor=None):
 				time.sleep(s);
 
 			if r1<3.3:
-				followUser(conf, x.user.pk);
-				r2=random.randint(0,100)
-				if r2<20:
-					followMediaLikers(conf, x.pk);
-					s=random.uniform(.2,2)
-					time.sleep(s);
+				# followUser(conf, x.user.pk);
+				# r2=random.randint(0,100)
+				# if r2<20:
+				followMediaLikers(conf, x.pk);
+				# s=random.uniform(.2,2)
+				# time.sleep(s);
 					
 				s=random.randrange(1,6)
 				time.sleep(s);
