@@ -156,16 +156,17 @@ def getFromPage(conf):
 	while len(page) == 0:
 		r2=random.randint(0, len(pages)-1)	
 		page=pages[r2]
-
+	p1 = page
 	page = cl.user_id_from_username(page)
 		
-	print("Getting "+str(r1)+" medias for page "+page);
+	print("Getting "+str(r1)+" medias for page "+p1);
 	# medias = cl.hashtag_medias_recent(tag, amount=r1)
 	medias = None
 	try:
 		medias= cl.user_medias_gql(page, amount=r1)
 	except Exception as e:
 		print(e)
+		print("can not get media")
 
 	if medias:
 		try:
