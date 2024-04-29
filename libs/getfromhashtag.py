@@ -143,6 +143,9 @@ def getFromHashtag(conf, cursor=None):
 
 
 
+def get_one_page():
+
+
 def getFromPage(conf):
 	tags = conf["tags"].split(";");
 	pages = conf['pages'].split(";")
@@ -165,8 +168,12 @@ def getFromPage(conf):
 	try:
 		medias= cl.user_medias_gql(page, amount=r1)
 	except Exception as e:
-		print(e)
-		print("can not get media")
+		try:
+			medias= cl.user_medias(page, amount=r1)
+		except Exception as e1:
+			print(e1)
+			print("can not get media22")
+			medias = cl.user_medias_v1(page, amount=r1)
 
 	if medias:
 		try:
