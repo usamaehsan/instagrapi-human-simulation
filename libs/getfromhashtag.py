@@ -143,8 +143,6 @@ def getFromHashtag(conf, cursor=None):
 
 
 
-def get_one_page():
-
 
 def getFromPage(conf):
 	tags = conf["tags"].split(";");
