@@ -8,7 +8,8 @@ import sys
 
 from libs.config import *
 from classes.botconf import *
-def create_user(u, p, t, conf):
+
+def create_user(u, p, t, pages, conf):
 	
 	conf = loadUserConf(conf, u)
 	#### instagrapi file
@@ -22,7 +23,7 @@ def create_user(u, p, t, conf):
 	print(conf)
 
 	#### bot user config
-	conf.update({"username": u, "password": p, "tags": t, "cooldown_day": {"curr": 0, "follows": 0, "likes": 0, "unfollows": 0}, "cooldown_hour": {"curr": 0, "follows": 0, "likes": 0, "unfollows": 0}, "scripts_followers":0, "forced_words":"", "messages": {"active": 1, "texts":{"en": "Hi Thanks for the follow! How are you?", "es": "Gracias por el follow! \nComo estás?", "it": "Piacere, \ngrazie per il follow!"} } })
+	conf.update({"username": u, "password": p, "tags": t, "pages": pages, "cooldown_day": {"curr": 0, "follows": 0, "likes": 0, "unfollows": 0}, "cooldown_hour": {"curr": 0, "follows": 0, "likes": 0, "unfollows": 0}, "scripts_followers":0, "forced_words":"", "messages": {"active": 1, "texts":{"en": "Hi Thanks for the follow! How are you?", "es": "Gracias por el follow! \nComo estás?", "it": "Piacere, \ngrazie per il follow!"} } })
 	localBotConf = botConf(conf);
 	localBotConf.writeConf()
 
@@ -51,6 +52,10 @@ def new_user(conf):
 	print ("++ dog;puppy;puppies;dogs;dogslover;puppylover;puppy35")
 	print ("++ Just alfanumeric chars are accepted ")
 	t = str(input(">> Tags: "))
-	create_user(u, p, t, conf)
+	print ("++ Insert all usernames of interest, separated by a ';'. Ie, ")
+	print ("++ dog;puppy")
+	print ("++ Just alfanumeric chars are accepted ")
+	pages = str(input(">> users: "))
+	create_user(u, p, t,pages, conf)
 
 

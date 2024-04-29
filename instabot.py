@@ -25,7 +25,7 @@ import argparse
 
 from libs.stats import printStats
 from libs.feed import gefFromFeed
-from libs.getfromhashtag import getFromHashtag
+from libs.getfromhashtag import getFromHashtag, getFromPage
 from libs.newfollowers import getNewFollowers
 from libs.unfollowusers import unfollowUsers
 from libs.cooldown import *
@@ -176,7 +176,8 @@ def main():
 
 		#########
 		# HASTAGS
-		getFromHashtag(conf)
+		# getFromHashtag(conf)
+		getFromPage(conf)
 
 		printStats(conf)
 		

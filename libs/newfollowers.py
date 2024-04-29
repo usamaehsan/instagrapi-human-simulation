@@ -42,7 +42,7 @@ def getNewFollowers(conf, cursor=None):
 
 				print("[GetNewFollowers] User "+x.username+" is a NEW follower, followed "+str(diffInDays)+" days ago");
 				if diffInDays <= 3:
-					sendMessage(conf, x.pk)
+					# sendMessage(conf, x.pk)
 					time.sleep(10)
 
 	return
