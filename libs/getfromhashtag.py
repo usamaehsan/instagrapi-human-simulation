@@ -171,7 +171,10 @@ def getFromPage(conf):
 			if not thumb_url:
 				image_versions = x.image_versions2
 				# Access the 'candidates' list
-				candidates = image_versions['candidates']
+				try:
+					candidates = image_versions['candidates']
+				except:
+					continue
 				# print("got candidates")
 				# Get the first thumbnail URL (index 0)
 				thumb_url = candidates[0]['url']
