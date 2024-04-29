@@ -61,7 +61,7 @@ def followMediaLikers(conf, pk):
 	print("[followMediaLikers] "+pk+" Get media likes ");
 	e_media_likes = cl.media_likers(pk);
 	i=0;
-	r2=random.randint(0,4)
+	r2=random.randint(0,8)
 	for xx in e_media_likes:
 		if i>=r2:
 			print("[followMediaLikers] "+pk+" End media likes ")
