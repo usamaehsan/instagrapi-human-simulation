@@ -161,6 +161,7 @@ def getFromPage(conf):
 		
 	print("Getting "+str(r1)+" medias for page "+page);
 	# medias = cl.hashtag_medias_recent(tag, amount=r1)
+	medias = None
 	try:
 		medias= cl.user_medias_gql(page, amount=r1)
 	except Exception as e:
