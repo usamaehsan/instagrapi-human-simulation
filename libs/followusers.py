@@ -66,7 +66,7 @@ def followMediaLikers(conf, pk):
 		if i>=r2:
 			print("[followMediaLikers] "+pk+" End media likes ")
 			break;
-		if random.randint(0,100) < 20:
+		if random.randint(0,100) < 80:
 			print("[followMediaLikers] Following user "+xx.username+" (in media likes)");
 			# Append to file at last
 			followUser(conf, xx.pk);
