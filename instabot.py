@@ -130,78 +130,84 @@ def main():
 
 	printStats(conf)
 	
-	while 1:
-		# Today in UTC
-		cooldown_day_ts=conf["cooldown_day"]["curr"]
-		today_ts=time.mktime(time.strptime(str(datetime.now(timezone.utc)).split(" ")[0], '%Y-%m-%d'))
-		if (today_ts > cooldown_day_ts):
-			## Reset daily counters
-			localBotConf.resetTodayConf(today_ts)
+	try:
+		while 1:
+			# Today in UTC
+			cooldown_day_ts=conf["cooldown_day"]["curr"]
+			today_ts=time.mktime(time.strptime(str(datetime.now(timezone.utc)).split(" ")[0], '%Y-%m-%d'))
+			if (today_ts > cooldown_day_ts):
+				## Reset daily counters
+				localBotConf.resetTodayConf(today_ts)
 
-		### This hour in UTC
-		hour_ts=time.mktime(time.strptime(str(datetime.now(timezone.utc)).split(":")[0], '%Y-%m-%d %H'))
-		cooldown_hour_ts=conf["cooldown_hour"]["curr"]
-		if (hour_ts > cooldown_hour_ts):
-			localBotConf.resetHourConf(hour_ts)
+			### This hour in UTC
+			hour_ts=time.mktime(time.strptime(str(datetime.now(timezone.utc)).split(":")[0], '%Y-%m-%d %H'))
+			cooldown_hour_ts=conf["cooldown_hour"]["curr"]
+			if (hour_ts > cooldown_hour_ts):
+				localBotConf.resetHourConf(hour_ts)
 
-		print("****************************************** ")
-		print("#### Execution # "+str(execution_counter))
-		
-		if not coolDownCheckDay(conf, coolDownMaxValues):
-			print("Cool Down Values Reached for the day, no go, sleep 4 hours")
-			time.sleep(7200)
-			continue
+			print("****************************************** ")
+			print("#### Execution # "+str(execution_counter))
+			
+			if not coolDownCheckDay(conf, coolDownMaxValues):
+				print("Cool Down Values Reached for the day, no go, sleep 4 hours")
+				time.sleep(7200)
+				continue
 
-		if not coolDownCheckHour(conf, coolDownMaxValues):
-			print("Cool Down Values Reached for the Hour, no go, sleep 10 minutes")
-			time.sleep(600)
-			continue
+			if not coolDownCheckHour(conf, coolDownMaxValues):
+				print("Cool Down Values Reached for the Hour, no go, sleep 10 minutes")
+				time.sleep(600)
+				continue
 
 
-		# getNewFollowers(conf)
+			# getNewFollowers(conf)
 
-		#########
-		# FEED
-		# print(" Getting my feed")
+			#########
+			# FEED
+			# print(" Getting my feed")
 
-		r1=random.randint(0,10)
-		# if r1<6:
-		# 	print(" ++ Getting my feed")
-		# 	gefFromFeed(conf)
-		# 	s=random.uniform(.5,5)
-		# 	time.sleep(s)
+			r1=random.randint(0,10)
+			# if r1<6:
+			# 	print(" ++ Getting my feed")
+			# 	gefFromFeed(conf)
+			# 	s=random.uniform(.5,5)
+			# 	time.sleep(s)
 
-		if r1<3:
-			unfollowUsers(conf)
+			if r1<3:
+				unfollowUsers(conf)
 
-		#########
-		# HASTAGS
-		# getFromHashtag(conf)
-		getFromPage(conf)
+			#########
+			# HASTAGS
+			# getFromHashtag(conf)
+			getFromPage(conf)
 
-		printStats(conf)
-		
-		#########
-		# SLEEP
-		r1=random.randint(0,100)
-		if r1<10:
-			r=random.randint(3600,14400) #night every ~10 exec
-		elif r1<20:
-			r=random.randint(600, 3600)
-		elif r1<50:
-			r=random.randint(60,360)
-		else:
-			r=random.randint(10,60)
+			printStats(conf)
+			
+			#########
+			# SLEEP
+			r1=random.randint(0,100)
+			if r1<10:
+				r=random.randint(3600,14400) #night every ~10 exec
+			elif r1<20:
+				r=random.randint(600, 3600)
+			elif r1<50:
+				r=random.randint(60,360)
+			else:
+				r=random.randint(10,60)
 
-		print("#### End Execution # "+str(execution_counter))
-		execution_counter += 1
+			print("#### End Execution # "+str(execution_counter))
+			execution_counter += 1
 
-		if conf['MAX_EXEC'] > 0 and execution_counter > conf['MAX_EXEC']:
-			break
+			if conf['MAX_EXEC'] > 0 and execution_counter > conf['MAX_EXEC']:
+				break
 
-		print("Sleeping "+str(r)+" seconds")
-		print("****************************************** ")
-		time.sleep(r)
+			print("Sleeping "+str(r)+" seconds")
+			print("****************************************** ")
+			time.sleep(r)
+
+
+	except Exception as e:
+		print(e, '\n', 'sleeping for 600 seconds')
+		time.sleep(300)
 
 main()
 
