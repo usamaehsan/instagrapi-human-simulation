@@ -158,7 +158,7 @@ def main():
 			continue
 
 
-		getNewFollowers(conf)
+		# getNewFollowers(conf)
 
 		#########
 		# FEED

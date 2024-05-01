@@ -19,7 +19,10 @@ def getNewFollowers(conf, cursor=None):
 	my_pk = cl.user_id_from_username(username)
 	my_user_id_infos = cl.user_info(my_pk);
 	# followers = cl.user_followers(my_pk);
-	followers, cursor = cl.user_followers_v1_chunk(my_pk, 100, cursor)
+	try:
+		followers, cursor = cl.user_followers_v1_chunk(my_pk, 100, cursor)
+	except Exception as e:
+		print('get followers::', e)
 
 	for x in followers:
 		if x.pk not in open(os.path.join(confdir, "followers.csv")).read():
